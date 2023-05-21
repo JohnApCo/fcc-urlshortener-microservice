@@ -8,14 +8,14 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto&family=Source+Code+Pro:wght@700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link href="normalize.css" rel="stylesheet" type="text/css">
-  <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
   <header class="header">
     <div class="header-container">
       <a class="logo" href="/">
-        <img class="logo__img" src="img/logo_only.svg" alt="johnapco">
+        <img class="logo__img" src="/img/logo_only.svg" alt="johnapco">
         <h2 class="logo__name">JohnApCo</h2>
       </a>
       <nav class="icons">
@@ -65,48 +65,10 @@
       })(document, window, localStorage);
     </script>
   </header>
-  <main class="main">
+  <main class="main flex-center">
     <section class="container-lg">
-      <h1 class="text-center">
-        <span>Short</span><span class="text-primary">Url</span><wbr><span>Microservice</span>
-      </h1>
-    </section>
-    <section class="container-lg api-examples">
-      <!-- Create short URL -->
-      <article class="card">
-        <h2 class="card__title">Create short URL</h2>
-        <pre>
-          <span class="key">POST</span> /api/shorturl/new
-        </pre>
-        <form action="api/shorturl/new" method="POST">
-          <!-- <fieldset>
-            <legend>Url to shortener</legend> -->
-          <label class="label" for="url_input">URL:</label>
-          <div class="input">
-            <input class="input__data" id="url_input" type="text" name="url" placeholder="https://www.freecodecamp.org/" />
-            <input class="input__btn" type="submit" value="Post URL" />
-          </div>
-          <!-- </fieldset> -->
-        </form>
-      </article>
-      <!-- Use API -->
-      <article class="card">
-        <h2 class="card__title">Use short URL</h2>
-        <pre>
-          <span class="key">GET</span> /api/shorturl/:short_url
-        </pre>
-        <span class="label">This:</span>
-        <pre>
-          /api/shorturl/3
-        </pre>
-        <span class="label">Will redirect to:</span>
-        <pre>
-          https://forum.freecodecamp.org/
-        </pre>
-        <form action="api/shorturl/3" method="GET">
-          <button class="btn" type="submit">Try it</button>
-        </form>
-      </article>
+      <h1>Page not found</h1>
+      <img src="/img/404_error.svg" alt="not found" height="300px">
     </section>
   </main>
   <footer class="footer">

@@ -1,24 +1,47 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+require("dotenv").config();
+const express = require("express");
+const path = require("path");
+const cors = require("cors");
 const app = express();
+const connectDatabase = require("./config/database");
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 
-app.use('/public', express.static(`${process.cwd()}/public`));
+//connect database
+connectDatabase();
 
-app.get('/', function(req, res) {
-  res.sendFile(process.cwd() + '/views/index.html');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// http://expressjs.com/en/starter/static-files.html
+app.use(express.static("./public"));
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/views/index.html");
 });
 
-// Your first API endpoint
-app.get('/api/hello', function(req, res) {
-  res.json({ greeting: 'hello API' });
+//API routes
+const shortURL = require("./routes/shortURL.route");
+app.use("/api/shorturl", shortURL);
+// Not found
+app.use(function (req, res, next) {
+  res.status(404);
+  // respond with html page
+  if (req.accepts("html")) {
+    res.sendFile(path.resolve("views/404.html"));
+    return;
+  }
+  // respond with json
+  if (req.accepts("json")) {
+    res.json({ error: "Not found" });
+    return;
+  }
+  // default to plain-text. send()
+  res.type("txt").send("Not found");
 });
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log(`Listening on port ${port}`);
 });
