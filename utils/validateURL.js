@@ -2,7 +2,7 @@ const dnsLookup = require("./dnsLookup");
 
 const validateUrl = async (url) => {
   const urlPattern =
-    /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z]{2,})(\/\S*)?$/;
+    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
   try {
     if (typeof url !== "string" || url === "" || !urlPattern.test(url)) {
