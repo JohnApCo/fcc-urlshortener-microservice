@@ -6,7 +6,8 @@ const app = express();
 const connectDatabase = require("./config/database");
 
 // Basic Configuration
-const port = process.env.PORT || 3000;
+const { PORT } = require("./config/index");
+//const port = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -42,6 +43,6 @@ app.use(function (req, res, next) {
   res.type("txt").send("Not found");
 });
 
-app.listen(port, function () {
-  console.log(`Listening on port ${port}`);
+app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}`);
 });

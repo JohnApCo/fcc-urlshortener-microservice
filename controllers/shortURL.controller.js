@@ -42,7 +42,6 @@ const createShortURL = async (req, res) => {
 const getShortURL = async (req, res) => {
   try {
     const shortURL = req.params.short_url;
-
     // Don't allow strings and zero for short url
     if (isNaN(+shortURL) || shortURL === "0") {
       throw Error("Wrong format");
@@ -53,7 +52,7 @@ const getShortURL = async (req, res) => {
     if (!item) throw Error(`No short URL found for the given input`);
 
     // Redirect to the original url
-    return res.redirect(302, item.shortURL);
+    return res.redirect(302, item.originalURL);
   } catch (e) {
     return res.json({ error: e.message });
   }

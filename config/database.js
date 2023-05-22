@@ -1,9 +1,9 @@
-const config = require("./index");
+const { MONGO_URI } = require("./index");
 const mongoose = require("mongoose");
 
 const connectDatabase = () => {
   mongoose
-    .connect(config.mongoUrl, {
+    .connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
