@@ -5,12 +5,11 @@ const createShortURL = async (req, res) => {
     const url = req.body.url.toLowerCase();
 
     // Check if url is already in the db
-    const shortURL = await ShortURL.findOne({ originalURL: url });
+    const shortURL = await ShortURL.findOne({ original_url: url });
     if (shortURL) {
       return res.json({
-        originalURL: shortURL.originalURL,
-        shortURL: shortURL.shortURL,
-        createdAt: shortURL.createdAt,
+        original_url: shortURL.original_url,
+        short_url: shortURL.short_url,
       });
     }
 
@@ -20,10 +19,10 @@ const createShortURL = async (req, res) => {
     console.log("count", count ? count + 1 : 1);
 
     const urlObj = {
-      originalURL: url,
+      original_url: url,
 
       // First short_url is 1 and then increments by 1
-      shortURL: count ? count + 1 : 1,
+      short_url: count ? count + 1 : 1,
     };
 
     // Create new item
@@ -48,11 +47,11 @@ const getShortURL = async (req, res) => {
     }
 
     // Find item by short url in the database
-    const item = await ShortURL.findOne({ shortURL: +shortURL });
+    const item = await ShortURL.findOne({ short_url: +shortURL });
     if (!item) throw Error(`No short URL found for the given input`);
 
     // Redirect to the original url
-    return res.redirect(302, item.originalURL);
+    return res.redirect(302, item.original_url);
   } catch (e) {
     return res.json({ error: e.message });
   }

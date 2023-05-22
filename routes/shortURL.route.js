@@ -7,7 +7,7 @@ const {
 } = require("../controllers/shortURL.controller");
 const urlValidator = require("../middlewares/urlValidator");
 
-router.post("/new", urlValidator, createShortURL);
+router.post("/", urlValidator, createShortURL);
 
 router.get("/:short_url", getShortURL);
 

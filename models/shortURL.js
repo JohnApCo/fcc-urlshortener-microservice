@@ -2,16 +2,16 @@ const mongoose = require("mongoose");
 
 // Definir el esquema del modelo
 const shortURLSchema = new mongoose.Schema({
-  originalURL: {
+  original_url: {
     type: String,
     required: true,
   },
-  shortURL: {
+  short_url: {
     type: String,
     required: true,
     unique: true,
   },
-  createdAt: {
+  created_at: {
     type: Date,
     default: Date.now,
   },
