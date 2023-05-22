@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const app = express();
 const connectDatabase = require("./config/database");
+const errorHandler = require("./middlewares/errorHandler");
 
 // Basic Configuration
 const { PORT } = require("./config/index");
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static("./public"));
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
 });
 
@@ -27,7 +28,7 @@ app.get("/", function(req, res) {
 const shortURL = require("./routes/shortURL.route");
 app.use("/api/shorturl", shortURL);
 // Not found
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.status(404);
   // respond with html page
   if (req.accepts("html")) {
@@ -43,6 +44,8 @@ app.use(function(req, res, next) {
   res.type("txt").send("Not found");
 });
 
-app.listen(PORT, function() {
+app.use(errorHandler);
+
+app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
 });

@@ -17,7 +17,7 @@ const validateUrl = async (url) => {
     console.log("dnsLookup: " + hostname);
     await dnsLookup(hostname);
   } catch {
-    throw new Error("Invalid URL");
+    throw new Error("invalid url");
   }
 };
 
